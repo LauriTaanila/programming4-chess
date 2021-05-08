@@ -28,7 +28,7 @@ public class Game extends JFrame {
     public void InterfaceSetUp() {
         frame = new JFrame();
         frame.setTitle("Chessboard");
-        frame.setSize(900, 700);
+        frame.setSize(700, 500);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -37,20 +37,53 @@ public class Game extends JFrame {
 
         GridBagConstraints gbc = new GridBagConstraints();
 
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.ipadx = 1;       //reset to default
+
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0;
+        gbc.weighty = 0.4;
+        gbc.insets = new Insets(0,0,20,0);  //top padding
+        JButton b = new JButton("N");
+        panel.add(b,gbc);
+
+        gbc.insets = new Insets(0,0,0,0);  //top padding
+        gbc.anchor = GridBagConstraints.LINE_START; //bottom of space
+
         gbc.weightx = 0;
         gbc.weighty = 0;
-        gbc.fill = GridBagConstraints.LAST_LINE_START;
+        int color = 0;
         for(int i = 0;i < 8; i++){
             for (int j = 0; j < 8; j++){
                 gbc.gridx = i;
-                gbc.gridy = j + 2;
-                JButton button = new JButton(" ");
+                gbc.gridy = j + 1;
+                JLabel button;
+                if(color % 2 == 1){
+                    button = createLabel(" ",50,50,Color.black);
+                } else {
+                    button = createLabel(" ",50,50,Color.lightGray);
+                }
+                color++;
                 panel.add(button, gbc);
-                chessBoardSquares[i][j] = button;
+
             }
+            color--;
         }
 
+        gbc.anchor = GridBagConstraints.LINE_END;
 
+        gbc.gridx = 12;
+        gbc.gridy = 1;
+        gbc.ipady = 30;
+        gbc.gridwidth = 5;
+        gbc.gridheight = 10;
+        gbc.weightx = 1;
+
+        JLabel movehistory = createLabel(" ",200,50,Color.gray);
+        panel.add(movehistory, gbc);
 
 
 

@@ -28,53 +28,70 @@ public class Game extends JFrame {
     public void InterfaceSetUp() {
         frame = new JFrame();
         frame.setTitle("Chessboard");
-        frame.setSize(700, 500);
+        frame.setSize(1000, 800);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         chessBoardSquares = new JButton[8][8];
         panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.WHITE);
 
         GridBagConstraints gbc = new GridBagConstraints();
 
-        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.ipadx = 1;       //reset to default
-
+        gbc.ipady = 1;
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
+        gbc.gridheight = 1;
         gbc.weightx = 0;
-        gbc.weighty = 0.4;
-        gbc.insets = new Insets(0,0,20,0);  //top padding
-        JButton b = new JButton("N");
+        gbc.weighty = 0.1;
+        gbc.insets = new Insets(100,20,0,0);  //top padding
+        JButton b = new JButton("NEW GAME");
         panel.add(b,gbc);
 
-        gbc.insets = new Insets(0,0,0,0);  //top padding
+        gbc.insets = new Insets(0,100,0,0);  //top padding
         gbc.anchor = GridBagConstraints.LINE_START; //bottom of space
 
         gbc.weightx = 0;
         gbc.weighty = 0;
         int color = 0;
+
+        for(int i = 8;i > 0; i--){
+            gbc.gridx = 0;
+            gbc.gridy = 9 - i;
+            JLabel square = createLabel(Integer.toString(i),50,50,Color.white);
+            panel.add(square, gbc);
+        }
+        gbc.insets = new Insets(0,0,0,0);  //top padding
+
         for(int i = 0;i < 8; i++){
+            JLabel square;
+            
             for (int j = 0; j < 8; j++){
-                gbc.gridx = i;
+                gbc.gridx = i + 1;
                 gbc.gridy = j + 1;
-                JLabel button;
                 if(color % 2 == 1){
-                    button = createLabel(" ",50,50,Color.black);
+                    square = createLabel(" ",50,50,Color.black);
                 } else {
-                    button = createLabel(" ",50,50,Color.lightGray);
+                    square = createLabel(" ",50,50,Color.lightGray);
                 }
                 color++;
-                panel.add(button, gbc);
-
+                panel.add(square, gbc);
             }
             color--;
         }
+        for(int i = 0;i < 8; i++){
+            gbc.gridx = i + 1;
+            gbc.gridy = 9;
+            JLabel square = createLabel(Character.toString((char) ('A' + i)),50,50,Color.white);
+            panel.add(square, gbc);
+        }
 
         gbc.anchor = GridBagConstraints.LINE_END;
-
+        gbc.fill = GridBagConstraints.VERTICAL;
         gbc.gridx = 12;
         gbc.gridy = 1;
         gbc.ipady = 30;

@@ -28,7 +28,7 @@ public class Board {
                 if (board[i][j] == null) {
                     System.out.print(" ");
                 } else {
-                    System.out.print(board[i][j].getIcon());
+                    System.out.print(board[i][j].getColor());
                 }
                 System.out.print(" ");
             }
@@ -43,7 +43,6 @@ public class Board {
         Move m = new Move(6, 2, 1, 3, board[6][2]);
 
         if (board[6][2].tryMove(m, board)) {
-            System.out.println("LESS GOO");
             movePiece(m);
 
             moveHistory.add(m);
@@ -62,5 +61,9 @@ public class Board {
         board[move.getEnd_row()][move.getEnd_column()] = move.getMovingPiece();
 
         printBoard();
+    }
+
+    public Piece[][] getBoard() {
+        return board;
     }
 }

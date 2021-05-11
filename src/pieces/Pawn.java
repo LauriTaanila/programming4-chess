@@ -1,12 +1,14 @@
 package pieces;
 import mechanics.Move;
 
+import javax.swing.*;
+
 public class Pawn extends Piece {
 
     public Pawn(char newcolor) {
-        super(newcolor, 'p', 1);
+        super(newcolor,new ImageIcon("C:/Users/Lauri/IdeaProjects/chess/src/pieces/pictures/whiteRook.png"), 1);
         if (getColor() == 'w') {
-            setIcon(Character.toUpperCase(getIcon()));
+
         }
     }
 

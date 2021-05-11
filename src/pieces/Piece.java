@@ -3,13 +3,15 @@ import java.lang.Math;
 
 import mechanics.Move;
 
+import javax.swing.*;
+
 public class Piece {
 
     private char color;
-    private char icon;
+    private ImageIcon icon;
     private int value;
 
-    Piece(char color, char icon, int value) {
+    Piece(char color, ImageIcon icon, int value) {
         this.color = color;
         this.icon = icon;
         this.value = value;
@@ -90,13 +92,11 @@ public class Piece {
         return color;
     }
 
-    public char getIcon() {
+    public ImageIcon getIcon() {
+
         return icon;
     }
 
-    public void setIcon(char icon) {
-        this.icon = icon;
-    }
 
     public int getValue() {
         return value;

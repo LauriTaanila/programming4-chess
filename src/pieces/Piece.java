@@ -93,10 +93,12 @@ public class Piece {
     }
 
     public ImageIcon getIcon() {
-
         return icon;
     }
 
+    public void setIcon(ImageIcon icon) {
+        this.icon = icon;
+    }
 
     public int getValue() {
         return value;

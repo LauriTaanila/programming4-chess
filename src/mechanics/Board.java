@@ -10,10 +10,10 @@ public class Board {
 
     Board() {
         for (int i = 0; i < 8; i++) {
-            board[1][i] = new Rook('w');
+            board[1][i] = new Rook('b');
         }
         for (int i = 0; i < 8; i++) {
-            board[6][i] = new Rook('b');
+            board[6][i] = new Rook('w');
         }
     }
 
@@ -40,16 +40,9 @@ public class Board {
 
     public void test() {
 
-        Move m = new Move(6, 2, 1, 3, board[6][2]);
 
-        if (board[6][2].tryMove(m, board)) {
-            movePiece(m);
 
-            moveHistory.add(m);
 
-            System.out.println(moveHistory.peek().getTakenPiece().getIcon());
-        } else {
-        }
 
     }
 

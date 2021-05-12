@@ -1,17 +1,32 @@
 package mechanics;
 
+import javafx.util.Pair;
 import pieces.Piece;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+
+class Square extends JPanel{
+    private Pair<Integer,Integer> coordinates;
+
+    Square(int column, int row){
+        coordinates = new Pair<>(column,row);
+    }
+
+    public Pair<Integer,Integer> getCoordinates(){
+        return coordinates;
+    }
+}
 
 public class Game extends JFrame implements MouseListener, MouseMotionListener, ActionListener {
 
     private JFrame frame;
     private JPanel panel;
-    private JPanel[][] chessBoardSquares;
+    private Square[][] chessBoardSquares;
     private JLabel currentPiece;
+    private Square startingSquare;
     private Board board;
     private int xAdjustment;
     private int yAdjustment;
@@ -47,7 +62,7 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         panel.addMouseListener(this);
 
 
-        chessBoardSquares = new JPanel[8][8];
+        chessBoardSquares = new Square[8][8];
 
         GridBagConstraints gbc = new GridBagConstraints();
         //NEW GAME BUTTON
@@ -95,12 +110,12 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
             for(int j = 0; j < 8;j++){
                 gbc.gridx = i + 1;
                 gbc.gridy = j + 1;
-                chessBoardSquares[j][i] = new JPanel();
+                chessBoardSquares[j][i] = new Square(j,i);
                 chessBoardSquares[j][i].setPreferredSize(new Dimension(50, 50));
                 if(color % 2 == 1){
                     chessBoardSquares[j][i].setBackground(Color.white);
                 } else {
-                    chessBoardSquares[j][i].setBackground(Color.black);
+                    chessBoardSquares[j][i].setBackground(Color.gray);
                 }
                 color++;
                 panel.add(chessBoardSquares[j][i], gbc);
@@ -154,8 +169,18 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
     public void mousePressed(MouseEvent e) {
 
         currentPiece = null;
+        startingSquare = null;
+
+        int x = e.getX();
+        int y = e.getY();
+
+        if(x < 151 || y <  310|| x > 554 || y > 714){
+            return;
+        }
 
         Component c =  panel.findComponentAt(e.getX(), e.getY());
+
+        System.out.println(c);
 
         if (c instanceof JPanel) return;
 
@@ -168,14 +193,20 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         currentPiece.setLocation(e.getX() + xAdjustment, e.getY() + yAdjustment);
 
         java.awt.Toolkit toolkit = java.awt.Toolkit.getDefaultToolkit();
-        Cursor a = toolkit.createCustomCursor(new ImageIcon("C:/Users/Lauri/IdeaProjects/chess/src/pieces/pictures/whiteRook.png").getImage() , new Point(this.getX(),this.getY()), "");
+
+        BufferedImage image = new BufferedImage(((JLabel) c).getIcon().getIconWidth(), ((JLabel) c).getIcon().getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        ((JLabel) c).getIcon().paintIcon(new JPanel(), image.getGraphics(), 0, 0);
+
+        Cursor a = toolkit.createCustomCursor(image, new Point(this.getX(),this.getY()), "");
         panel.setCursor(a);
+        System.out.println(e.getX() + " " + e.getY());
 
     }
 
     @Override
     public void mouseDragged(MouseEvent me) {
         if (currentPiece == null) return;
+
 
         //  The drag location should be within the bounds of the chess board
 
@@ -188,7 +219,6 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         int yMax = panel.getHeight() - currentPiece.getHeight();
         y = Math.min(y, yMax);
         y = Math.max(y, 0);
-
         currentPiece.setLocation(x, y);
     }
 
@@ -215,8 +245,12 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         int y = Math.min(e.getY(), yMax);
         y = Math.max(y, 0);
 
-        Component c =  panel.findComponentAt(x, y);
+        if(x < 151|| y <  310|| x > 554 || y > 714){
+            return;
+        }
 
+        Component c =  panel.findComponentAt(x, y);
+        System.out.println(e.getX() + " " + e.getY());
         if (c instanceof JLabel)
         {
             Container parent = c.getParent();

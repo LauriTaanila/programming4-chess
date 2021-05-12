@@ -1,4 +1,5 @@
 package mechanics;
+import javafx.util.Pair;
 import pieces.Piece;
 
 public class Move {
@@ -10,11 +11,11 @@ public class Move {
     private Piece takenPiece;
 
 
-    public Move(int start_row, int start_column, int end_row, int end_column, Piece movingPiece) {
-        this.start_row = start_row;
-        this.start_column = start_column;
-        this.end_row = end_row;
-        this.end_column = end_column;
+    public Move(Pair<Integer,Integer> startSquare,Pair<Integer,Integer> endSquare, Piece movingPiece) {
+        this.start_row = startSquare.getValue();
+        this.start_column = startSquare.getKey();
+        this.end_row = endSquare.getValue();
+        this.end_column = endSquare.getKey();
         this.movingPiece = movingPiece;
     }
 

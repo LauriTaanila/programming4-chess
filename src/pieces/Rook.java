@@ -20,7 +20,7 @@ public class Rook extends Piece {
         }
 
         // check if there are any pieces between start and destination
-        //System.out.println(move.getStart_column() + " " + move.getStart_row() + " to " + move.getEnd_column() + " " + move.getEnd_row());
+        System.out.println(move.getStart_column() + " " + move.getStart_row() + " to " + move.getEnd_column() + " " + move.getEnd_row());
         //System.out.println(checkLine(move, board));
         return checkLine(move, board);
 

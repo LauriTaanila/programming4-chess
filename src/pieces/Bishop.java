@@ -6,9 +6,9 @@ import javax.swing.*;
 public class Bishop extends Piece {
     
     public Bishop(char newcolor) {
-        super(newcolor,new ImageIcon("C:/Users/Lauri/IdeaProjects/chess/src/pieces/pictures/whiteRook.png"), 3);
-        if (getColor() == 'w') {
-
+        super(newcolor,new ImageIcon("src/pieces/pictures/whiteBishop.png"), 3);
+        if (getColor() == 'b') {
+            setIcon(new ImageIcon("src/pieces/pictures/blackBishop.png"));
         }
     }
 

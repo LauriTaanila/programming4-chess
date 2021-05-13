@@ -10,10 +10,11 @@ public class Board {
 
     Board() {
         for (int i = 0; i < 8; i++) {
-            board[1][i] = new Rook('b');
+            board[i][1] = new Rook('w');
+
         }
         for (int i = 0; i < 8; i++) {
-            board[6][i] = new Rook('w');
+            board[i][6] = new Rook('b');
         }
     }
 
@@ -21,14 +22,13 @@ public class Board {
         System.out.println("---------------------------------");
         int rank = 8;
 
-        for (int i = 7; i >= 0; i--) {
-            System.out.print(i + 1);
+        for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 System.out.print("| ");
-                if (board[i][j] == null) {
+                if (board[j][i] == null) {
                     System.out.print(" ");
                 } else {
-                    System.out.print(board[i][j].getColor());
+                    System.out.print(board[j][i].getColor());
                 }
                 System.out.print(" ");
             }
@@ -49,9 +49,9 @@ public class Board {
     public void movePiece(Move move) {
         moveHistory.add(move);
 
-        board[move.getStart_row()][move.getStart_column()] = null;
+        board[move.getStart_column()][move.getStart_row()] = null;
 
-        board[move.getEnd_row()][move.getEnd_column()] = move.getMovingPiece();
+        board[move.getEnd_column()][move.getEnd_row()] = move.getMovingPiece();
 
         printBoard();
     }

@@ -25,6 +25,7 @@ public class Piece {
         //System.out.println(move.getStart_column() + " " + move.getStart_row() + " to " + move.getEnd_column() + " " + move.getEnd_row());
         // check straight line
         if ((move.getEnd_row() - move.getStart_row()) != 0 && (move.getEnd_column() - move.getStart_column()) != 0) {
+            System.out.println("CHECKLINE 1 RETURNIGN FALSE");
             return false;
         }
                 
@@ -32,23 +33,28 @@ public class Piece {
 
         // Test moving the piece. Returns true if move is possible. Returns true if piece collides with another.
         if (move.getStart_row() == move.getEnd_row()) {
-            cdirection = (move.getEnd_column() - move.getStart_column()/ Math.abs((move.getEnd_column() - move.getStart_column())));
-            int current_column = move.getStart_column();
+            cdirection = (move.getEnd_column() - move.getStart_column()) / Math.abs((move.getEnd_column() - move.getStart_column()));
+
+            System.out.println("c " + cdirection);
+            int current_column = move.getStart_column() + cdirection;
             while (current_column != move.getEnd_column()) {
-                current_column += cdirection;
-                if (board[move.getStart_row()][current_column] != null && current_column != move.getEnd_column()) {
+                System.out.println(current_column + " " + move.getStart_row() + " to " + move.getEnd_column() + " " + move.getEnd_row());
+                if (board[current_column][move.getStart_row()] != null && current_column != move.getEnd_column()) {
                     return false;
                 }
+                current_column += cdirection;
             }
         } else {
             rdirection = (move.getEnd_row() - move.getStart_row()) / Math.abs((move.getEnd_row() - move.getStart_row()));
-            int current_row = move.getStart_row();
+            System.out.println("r " + rdirection);
+            int current_row = move.getStart_row() + rdirection;
             while (current_row != move.getEnd_row()) {
-                current_row += rdirection;
-                if (board[current_row][move.getStart_column()] != null && current_row != move.getEnd_row()) {
-                    System.out.println(current_row + " " + move.getStart_row() + " to " + move.getEnd_column() + " " + move.getEnd_row());
+
+                System.out.println(move.getStart_column() + " " + current_row + " to " + move.getEnd_column() + " " + move.getEnd_row());
+                if (board[move.getStart_column()][current_row] != null && current_row != move.getEnd_row()) {
                     return false;
                 }
+                current_row += rdirection;
             }
         }
         return true;
@@ -79,12 +85,16 @@ public class Piece {
     }
 
     public boolean checkCapture(Move move, Piece board[][]) {
-        if (board[move.getEnd_row()][move.getEnd_column()] != null) {
-            if (board[move.getEnd_row()][move.getEnd_column()].getColor() == getColor()) {
+
+        if (board[move.getEnd_column()][move.getEnd_row()] != null) {
+            System.out.println("CAP NOT NULL");
+            if (board[move.getEnd_column()][move.getEnd_row()].getColor() == getColor()) {
+                System.out.println("CAP RETURNING FALSE");
                 return false;
             }
-            move.setTakenPiece(board[move.getEnd_row()][move.getEnd_column()]);
+            move.setTakenPiece(board[move.getEnd_column()][move.getEnd_row()]);
         }
+        System.out.println("CAP RETURNING TRUE");
         return true;
     }
 

@@ -1,5 +1,6 @@
 package mechanics;
 
+import javafx.scene.Parent;
 import javafx.util.Pair;
 import pieces.Piece;
 
@@ -26,8 +27,9 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
     private JPanel panel;
     private Square[][] chessBoardSquares;
     private JLabel currentPiece;
-    private Square startingSquare;
+    private Pair<Integer, Integer> startingSquare;
     private Board board;
+    private Piece[][] currentboard;
     private int xAdjustment;
     private int yAdjustment;
 
@@ -110,15 +112,15 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
             for(int j = 0; j < 8;j++){
                 gbc.gridx = i + 1;
                 gbc.gridy = j + 1;
-                chessBoardSquares[j][i] = new Square(j,i);
-                chessBoardSquares[j][i].setPreferredSize(new Dimension(50, 50));
+                chessBoardSquares[i][j] = new Square(i,j);
+                chessBoardSquares[i][j].setPreferredSize(new Dimension(50, 50));
                 if(color % 2 == 1){
-                    chessBoardSquares[j][i].setBackground(Color.white);
+                    chessBoardSquares[i][j].setBackground(Color.white);
                 } else {
-                    chessBoardSquares[j][i].setBackground(Color.gray);
+                    chessBoardSquares[i][j].setBackground(Color.gray);
                 }
                 color++;
-                panel.add(chessBoardSquares[j][i], gbc);
+                panel.add(chessBoardSquares[i][j], gbc);
             }
             color--;
         }
@@ -146,7 +148,7 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
     }
 
     public void updateBoard(){
-        Piece[][] currentboard = board.getBoard();
+        currentboard = board.getBoard();
 
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8;j++){
@@ -174,7 +176,9 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         int x = e.getX();
         int y = e.getY();
 
-        if(x < 151 || y <  310|| x > 554 || y > 714){
+
+        //BOARD BOUNDS
+        if(x < 151 || y <  305|| x > 554 || y > 714){
             return;
         }
 
@@ -184,7 +188,9 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
 
         if (c instanceof JPanel) return;
 
-        System.out.println("hi");
+        Square parent = (Square) c.getParent();
+        startingSquare = parent.getCoordinates();
+
 
         Point parentLocation = c.getParent().getLocation();
         xAdjustment = parentLocation.x - e.getX();
@@ -192,14 +198,15 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         currentPiece = (JLabel)c;
         currentPiece.setLocation(e.getX() + xAdjustment, e.getY() + yAdjustment);
 
+        //Changes cursor to
         java.awt.Toolkit toolkit = java.awt.Toolkit.getDefaultToolkit();
-
         BufferedImage image = new BufferedImage(((JLabel) c).getIcon().getIconWidth(), ((JLabel) c).getIcon().getIconHeight(), BufferedImage.TYPE_INT_ARGB);
         ((JLabel) c).getIcon().paintIcon(new JPanel(), image.getGraphics(), 0, 0);
 
         Cursor a = toolkit.createCustomCursor(image, new Point(this.getX(),this.getY()), "");
         panel.setCursor(a);
         System.out.println(e.getX() + " " + e.getY());
+
 
     }
 
@@ -249,21 +256,42 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
             return;
         }
 
+
         Component c =  panel.findComponentAt(x, y);
         System.out.println(e.getX() + " " + e.getY());
+        Square parent = (Square) c;
+        Pair<Integer,Integer> endingSquare = parent.getCoordinates();
+
+        System.out.println(startingSquare + " -> " + endingSquare);
+
+        Move currentMove = new Move(startingSquare, endingSquare,currentboard[startingSquare.getKey()][startingSquare.getValue()]);
+
+        System.out.println(currentMove.getStart_column() + " " + currentMove.getStart_row() + " -> " + currentMove.getEnd_column() + " " + currentMove.getEnd_row());
+        System.out.println(currentboard[startingSquare.getKey()][startingSquare.getValue()].getIcon());
+        if(!currentboard[startingSquare.getKey()][startingSquare.getValue()].tryMove(currentMove,currentboard)){
+            return;
+        };
+
+        board.movePiece(currentMove);
+        currentboard = board.getBoard();
+
         if (c instanceof JLabel)
         {
-            Container parent = c.getParent();
+
             parent.remove(0);
+            //System.out.println(((Square) parent).getCoordinates());
             parent.add( currentPiece );
             parent.validate();
         }
         else
         {
-            Container parent = (Container)c;
+
             parent.add( currentPiece );
+            System.out.println(startingSquare + " -> " + ((Square) parent).getCoordinates());
             parent.validate();
         }
+        //Container parent = c.getParent();
+        //System.out.println(startingSquare + " -> " + ((Square) parent).getCoordinates());
     }
 
     @Override

@@ -1,7 +1,4 @@
-package pieces;
-import java.lang.Math;
 
-import mechanics.Move;
 
 import javax.swing.*;
 

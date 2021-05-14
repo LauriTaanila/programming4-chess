@@ -1,5 +1,3 @@
-package mechanics;
-import pieces.Piece;
 
 public class Move {
     private int start_column;

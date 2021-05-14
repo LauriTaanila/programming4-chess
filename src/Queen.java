@@ -1,5 +1,3 @@
-package pieces;
-import mechanics.Move;
 
 import javax.swing.*;
 

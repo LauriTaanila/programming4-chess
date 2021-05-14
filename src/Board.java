@@ -1,6 +1,4 @@
-package mechanics;
 
-import pieces.*;
 import java.util.Stack;
 
 public class Board {

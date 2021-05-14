@@ -1,6 +1,3 @@
-package mechanics;
-
-import pieces.Piece;
 
 import javax.swing.*;
 import java.awt.*;

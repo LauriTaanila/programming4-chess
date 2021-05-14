@@ -1,23 +1,29 @@
 package mechanics;
 
-import javafx.scene.Parent;
-import javafx.util.Pair;
 import pieces.Piece;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 class Square extends JPanel{
-    private Pair<Integer,Integer> coordinates;
+    private int column;
+    private int row;
 
-    Square(int column, int row){
-        coordinates = new Pair<>(column,row);
+    Square(int newcolumn,int newrow){
+        column = newcolumn;
+        row = newrow;
     }
 
-    public Pair<Integer,Integer> getCoordinates(){
-        return coordinates;
+    public int getColumn() {
+        return column;
+    }
+
+    public int getRow() {
+        return row;
     }
 }
 
@@ -27,7 +33,7 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
     private JPanel panel;
     private Square[][] chessBoardSquares;
     private JLabel currentPiece;
-    private Pair<Integer, Integer> startingSquare;
+    private Square startingSquare;
     private Board board;
     private Piece[][] currentboard;
     private int xAdjustment;
@@ -80,6 +86,7 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         gbc.weighty = 0.1;
         gbc.insets = new Insets(100,20,0,0);  //top padding
         JButton b = new JButton("NEW GAME");
+        b.setBackground(Color.red);
         b.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -125,8 +132,6 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
             color--;
         }
 
-
-
         for(int i = 0;i < 8; i++){
             gbc.gridx = i + 1;
             gbc.gridy = 9;
@@ -145,6 +150,35 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
 
         JLabel movehistory = createLabel(" ",200,50,Color.gray);
         panel.add(movehistory, gbc);
+
+        gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.gridx = 12;
+        gbc.gridy = 0;
+        gbc.ipady = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        JButton options = new JButton("OPTIONS");
+        options.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JCheckBox checkbox1 = new JCheckBox("Colourblind mode");
+                checkbox1.setBounds(150,100, 50,50);
+                frame.add(checkbox1);;
+                checkbox1.addItemListener(new ItemListener() {
+                    public void itemStateChanged(ItemEvent e) {
+                        if(b.getBackground() == Color.red){
+                            b.setBackground(Color.green);
+                        } else {
+                            b.setBackground(Color.red);
+                        }
+                    }
+                });
+                JOptionPane.showMessageDialog(frame,
+                        checkbox1, "Options",JOptionPane.PLAIN_MESSAGE);
+            }
+        });
+        panel.add(options,gbc);
     }
 
     public void updateBoard(){
@@ -189,7 +223,7 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         if (c instanceof JPanel) return;
 
         Square parent = (Square) c.getParent();
-        startingSquare = parent.getCoordinates();
+        startingSquare = parent;
 
 
         Point parentLocation = c.getParent().getLocation();
@@ -258,17 +292,23 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
 
 
         Component c =  panel.findComponentAt(x, y);
-        System.out.println(e.getX() + " " + e.getY());
-        Square parent = (Square) c;
-        Pair<Integer,Integer> endingSquare = parent.getCoordinates();
+        Square endingSquare = new Square(0,0);
+        Square parent;
 
-        System.out.println(startingSquare + " -> " + endingSquare);
+        if (c instanceof Square){
+            parent = (Square) c;
+            endingSquare = parent;
+        }
+        if(c instanceof JLabel){
+            parent = ((Square) c.getParent());
+            endingSquare = parent;
+        }
 
-        Move currentMove = new Move(startingSquare, endingSquare,currentboard[startingSquare.getKey()][startingSquare.getValue()]);
+        Move currentMove = new Move(startingSquare, endingSquare,currentboard[startingSquare.getColumn()][startingSquare.getRow()]);
 
         System.out.println(currentMove.getStart_column() + " " + currentMove.getStart_row() + " -> " + currentMove.getEnd_column() + " " + currentMove.getEnd_row());
-        System.out.println(currentboard[startingSquare.getKey()][startingSquare.getValue()].getIcon());
-        if(!currentboard[startingSquare.getKey()][startingSquare.getValue()].tryMove(currentMove,currentboard)){
+        System.out.println(currentboard[startingSquare.getColumn()][startingSquare.getRow()].getIcon());
+        if(!currentboard[startingSquare.getColumn()][startingSquare.getRow()].tryMove(currentMove,currentboard)){
             return;
         };
 
@@ -277,7 +317,7 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
 
         if (c instanceof JLabel)
         {
-
+            parent = (Square) c.getParent();
             parent.remove(0);
             //System.out.println(((Square) parent).getCoordinates());
             parent.add( currentPiece );
@@ -285,9 +325,8 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         }
         else
         {
-
+            parent = (Square) c;
             parent.add( currentPiece );
-            System.out.println(startingSquare + " -> " + ((Square) parent).getCoordinates());
             parent.validate();
         }
         //Container parent = c.getParent();

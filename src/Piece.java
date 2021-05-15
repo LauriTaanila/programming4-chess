@@ -59,24 +59,28 @@ public class Piece {
 
     public boolean checkDiagonalLine(Move move, Piece board[][]) {
 
+        //checks that the move is diagonal
         if (Math.abs((move.getEnd_row() - move.getStart_row())) != Math.abs((move.getEnd_column() - move.getStart_column()))) {
             return false;
         }
 
         int rdirection, cdirection;
-        // calculaters the direction of the move
+        // calculates the direction of the move
         rdirection = (move.getEnd_row() - move.getStart_row()) / Math.abs((move.getEnd_row() - move.getStart_row()));
         cdirection = (move.getEnd_column() - move.getStart_column()) / Math.abs((move.getEnd_column() - move.getStart_column()));
+        System.out.println("r d = " + rdirection + "c d = " + cdirection);
 
-        // checks if there are any pieces between start and destination
-        int current_row = move.getStart_row(); 
-        int current_column = move.getStart_column(); 
-        while (move.getStart_row() != move.getEnd_row() && move.getStart_column() != move.getEnd_column()) {
-            current_row += rdirection;
-            current_column += cdirection;
-            if (board[current_row][current_column] != null && move.getStart_row() != move.getEnd_row() && move.getStart_column() != move.getEnd_column()) {
+        // checks if there are any pieces between start and destination. If a piece is found returns false.
+        int current_row = move.getStart_row() + rdirection;
+        int current_column = move.getStart_column() + cdirection;
+        while (current_column != move.getEnd_column() && current_row != move.getEnd_row()) {
+            System.out.println(current_column + " " + current_row + " to " + move.getEnd_column() + " " + move.getEnd_row());
+            if (board[current_column][current_row] != null && move.getStart_row() != move.getEnd_row() && move.getStart_column() != move.getEnd_column()) {
                 return false;
             }
+            current_row += rdirection;
+            current_column += cdirection;
+
         }
         return true;
     }

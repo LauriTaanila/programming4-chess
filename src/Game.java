@@ -3,8 +3,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
-import java.util.Map;
 
 class Square extends JPanel{
     private int column;
@@ -33,6 +31,7 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
     private Square startingSquare;
     private Board board;
     private Piece[][] currentboard;
+    private char currentturn = 'w';
     private int xAdjustment;
     private int yAdjustment;
 
@@ -88,6 +87,7 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
             @Override
             public void actionPerformed(ActionEvent e) {
                 board = new Board();
+                System.out.println("lll");
                 updateBoard();
                 panel.validate();
                 panel.repaint();
@@ -201,12 +201,12 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
     @Override
     public void mousePressed(MouseEvent e) {
 
+        //Starts a new move
         currentPiece = null;
         startingSquare = null;
 
         int x = e.getX();
         int y = e.getY();
-
 
         //BOARD BOUNDS
         if(x < 151 || y <  305|| x > 554 || y > 714){
@@ -215,13 +215,16 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
 
         Component c =  panel.findComponentAt(e.getX(), e.getY());
 
-        System.out.println(c);
-
         if (c instanceof JPanel) return;
 
         Square parent = (Square) c.getParent();
-        startingSquare = parent;
 
+        if(currentboard[parent.getColumn()][parent.getRow()].getColor() != currentturn){
+            return;
+        }
+
+        //Saves starting square
+        startingSquare = parent;
 
         Point parentLocation = c.getParent().getLocation();
         xAdjustment = parentLocation.x - e.getX();
@@ -229,7 +232,7 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         currentPiece = (JLabel)c;
         currentPiece.setLocation(e.getX() + xAdjustment, e.getY() + yAdjustment);
 
-        //Changes cursor to
+        //Changes cursor to piece image
         java.awt.Toolkit toolkit = java.awt.Toolkit.getDefaultToolkit();
         BufferedImage image = new BufferedImage(((JLabel) c).getIcon().getIconWidth(), ((JLabel) c).getIcon().getIconHeight(), BufferedImage.TYPE_INT_ARGB);
         ((JLabel) c).getIcon().paintIcon(new JPanel(), image.getGraphics(), 0, 0);
@@ -328,6 +331,11 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         }
         //Container parent = c.getParent();
         //System.out.println(startingSquare + " -> " + ((Square) parent).getCoordinates());
+        if(currentturn == 'w'){
+            currentturn = 'b';
+        } else {
+            currentturn = 'w';
+        }
     }
 
     @Override

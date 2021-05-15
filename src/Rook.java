@@ -5,9 +5,9 @@ import javax.swing.*;
 public class Rook extends Piece {
 
     public Rook(char newcolor) {
-        super(newcolor, new ImageIcon("./pieces/pictures/whiteRook.png"), 5);
+        super(newcolor, new ImageIcon("pictures/whiteRook.png"), 5);
         if (getColor() == 'b') {
-            setIcon(new ImageIcon("./pieces/pictures/blackRook.png"));
+            setIcon(new ImageIcon("pictures/blackRook.png"));
         }
     }
 

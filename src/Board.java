@@ -8,12 +8,25 @@ public class Board {
 
     Board() {
         for (int i = 0; i < 8; i++) {
-            board[i][1] = new Rook('w');
+            board[i][6] = new Pawn('w');
+        }
+        board[0][7] = new Rook('w');
+        board[7][7] = new Rook('w');
+        board[1][7] = new Knight('w');
+        board[2][7] = new Bishop('w');
+        board[5][7] = new Bishop('w');
+        board[4][7] = new Queen('w');
+        board[3][7] = new King('w');
 
-        }
+
         for (int i = 0; i < 8; i++) {
-            board[i][6] = new Rook('b');
+            board[i][1] = new Pawn('b');
         }
+        board[0][0] = new Rook('b');
+        board[7][0] = new Rook('b');
+        board[2][0] = new Bishop('b');
+        board[5][0] = new Bishop('b');
+        board[4][0] = new Queen('b');
     }
 
     public void printBoard() {
@@ -36,13 +49,6 @@ public class Board {
         System.out.println("   a   b   c   d   e   f   g   h");
     }
 
-    public void test() {
-
-
-
-
-
-    }
 
     public void movePiece(Move move) {
         moveHistory.add(move);
@@ -53,6 +59,7 @@ public class Board {
 
         printBoard();
     }
+
 
     public Piece[][] getBoard() {
         return board;

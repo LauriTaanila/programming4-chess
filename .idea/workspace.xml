@@ -7,17 +7,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="677d16f8-1eff-4276-8e11-52535e849f23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/chess_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/King.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chess/mechanics/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chess/mechanics/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/chess/mechanics/Square.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/chess/mechanics/Square.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mechanics/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mechanics/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/mechanics/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/mechanics/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/mechanics/Board.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/mechanics/Game$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/mechanics/Game$2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/mechanics/Game$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/mechanics/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/mechanics/Move.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/mechanics/Square.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/Bishop.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/Pawn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/Piece.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/Queen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/Rook.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/pictures/blackBishop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/pictures/blackKnight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/pictures/blackPawn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/pictures/blackQueen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/pictures/blackRook.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/pictures/whiteBishop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/pictures/whiteKnight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/pictures/whitePawn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/pictures/whiteQueen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/chess/pieces/pictures/whiteRook.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bishop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Piece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/pictures/blackBishop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/pictures/blackKnight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/pictures/blackPawn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/pictures/blackQueen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/pictures/blackRook.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/pictures/whiteBishop.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/pictures/whiteKnight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/pictures/whitePawn.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/pictures/whiteQueen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/pictures/whiteRook.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,6 +76,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -43,7 +87,14 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.Game">
+  <component name="RunManager" selected="Application.Game (1)">
+    <configuration name="Game (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Game" />
+      <module name="chess" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mechanics.Game" />
       <module name="chess" />
@@ -69,6 +120,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Game (1)" />
         <item itemvalue="Application.Game" />
         <item itemvalue="Application.Main" />
       </list>
@@ -91,6 +143,7 @@
       <workItem from="1620731791355" duration="12431000" />
       <workItem from="1620817948315" duration="7392000" />
       <workItem from="1620903644761" duration="19526000" />
+      <workItem from="1621030234978" duration="7642000" />
     </task>
     <servers />
   </component>
@@ -106,25 +159,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="304" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040/1920.-8.1920.1040@0.0.1920.1040" timestamp="1620935212944" />
-    <state width="1877" height="175" key="GridCell.Tab.0.bottom" timestamp="1620938623242">
+    <state width="938" height="208" key="GridCell.Tab.0.bottom" timestamp="1621037717437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="175" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-8.1920.1040@0.0.1920.1040" timestamp="1620938623242" />
+    <state width="938" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-8.1920.1040@0.0.1920.1040" timestamp="1621037717437" />
     <state width="1877" height="208" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.-8.1920.1040@1920.-8.1920.1040" timestamp="1620931884352" />
-    <state width="1877" height="175" key="GridCell.Tab.0.center" timestamp="1620938623242">
+    <state width="938" height="208" key="GridCell.Tab.0.center" timestamp="1621037717437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="175" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-8.1920.1040@0.0.1920.1040" timestamp="1620938623242" />
+    <state width="938" height="208" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-8.1920.1040@0.0.1920.1040" timestamp="1621037717437" />
     <state width="1877" height="208" key="GridCell.Tab.0.center/0.0.1920.1040/1920.-8.1920.1040@1920.-8.1920.1040" timestamp="1620931884352" />
-    <state width="1877" height="175" key="GridCell.Tab.0.left" timestamp="1620938623241">
+    <state width="938" height="208" key="GridCell.Tab.0.left" timestamp="1621037717437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="175" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-8.1920.1040@0.0.1920.1040" timestamp="1620938623241" />
+    <state width="938" height="208" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-8.1920.1040@0.0.1920.1040" timestamp="1621037717437" />
     <state width="1877" height="208" key="GridCell.Tab.0.left/0.0.1920.1040/1920.-8.1920.1040@1920.-8.1920.1040" timestamp="1620931884351" />
-    <state width="1877" height="175" key="GridCell.Tab.0.right" timestamp="1620938623242">
+    <state width="938" height="208" key="GridCell.Tab.0.right" timestamp="1621037717437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="175" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-8.1920.1040@0.0.1920.1040" timestamp="1620938623242" />
+    <state width="938" height="208" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-8.1920.1040@0.0.1920.1040" timestamp="1621037717437" />
     <state width="1877" height="208" key="GridCell.Tab.0.right/0.0.1920.1040/1920.-8.1920.1040@1920.-8.1920.1040" timestamp="1620931884352" />
     <state width="1877" height="175" key="GridCell.Tab.1.bottom" timestamp="1620938623242">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -154,6 +207,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="769" y="438" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.-8.1920.1040@0.0.1920.1040" timestamp="1620905496887" />
+    <state x="690" y="287" key="extract.method.dialog" timestamp="1621036041215">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="287" key="extract.method.dialog/0.0.1920.1040/1920.-8.1920.1040@0.0.1920.1040" timestamp="1621036041215" />
     <state x="343" y="141" key="new project wizard" timestamp="1620935352645">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -6,13 +6,14 @@ public class Move {
     private int end_row;
     private Piece movingPiece;
     private Piece takenPiece;
+    private int value;
 
 
-    public Move(Square startSquare, Square endSquare, Piece movingPiece) {
-        this.start_row = startSquare.getRow();
-        this.start_column = startSquare.getColumn();
-        this.end_row = endSquare.getRow();
-        this.end_column = endSquare.getColumn();
+    public Move(int start_column, int start_row, int end_column, int end_row, Piece movingPiece) {
+        this.start_row = start_row;
+        this.start_column = start_column;
+        this.end_row = end_row;
+        this.end_column =  end_column;
         this.movingPiece = movingPiece;
     }
 
@@ -40,9 +41,16 @@ public class Move {
     public Piece getTakenPiece() {
         return this.takenPiece;
     }
-    
+
+    public int getValue() {
+        return value;
+    }
+
     public void setTakenPiece(Piece takenPiece){
         this.takenPiece = takenPiece;
     }
-    
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 }

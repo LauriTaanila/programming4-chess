@@ -17,6 +17,7 @@ public class Knight extends Piece {
             return false;
         }
 
+        //king can only move 1 space
         if (move.getStart_row() == move.getEnd_row() + 1 || move.getStart_row() == move.getEnd_row() - 1) {
             if (move.getStart_column() == move.getEnd_column() + 2 || move.getStart_column() == move.getEnd_column() - 2) {
                 return true;

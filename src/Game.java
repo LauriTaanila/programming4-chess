@@ -602,9 +602,10 @@ public class Game extends JFrame implements MouseListener, MouseMotionListener, 
         y = Math.max(y, 0);
 
         //BOARD BOUNDS
-        if(x < 100 || y <  50|| x > 500 || y > 460){
+        if(x < 100 || y <  50|| x > 500 || y > 500){
             return;
         }
+
 
         Component c =  panel.findComponentAt(x, y);
         Square endingSquare = new Square(0,0);
